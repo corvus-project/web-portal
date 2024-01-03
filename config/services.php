@@ -31,4 +31,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'servers' => [
+        'pricing' => [
+            'url' => env('PRICING_SERVER_URL'),
+            'token' => env('PRICING_SERVER_TOKEN'),
+        ],
+        'stock' => [
+            'url' => env('STOCK_SERVER_URL'),
+            'token' => env('STOCK_SERVER_TOKEN'),
+        ],
+    ],
+
 ];
