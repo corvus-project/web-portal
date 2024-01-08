@@ -33,6 +33,6 @@ class SyncPricing implements ShouldQueue
             'sku' => $this->product->sku,
             'price' => $this->product->price
         ])->throw()->json();
-        Log::info('Product updated: ' . $this->product->toJson(), ['response' => $response->json()]);
+        Log::info('Product updated: ' . $this->product->toJson(), ['response' => $response]);
     }
 }

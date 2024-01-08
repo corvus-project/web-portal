@@ -35,7 +35,7 @@ class SyncStock implements ShouldQueue
             'sku' => $this->product->sku,
             'stock' => $this->product->stock
         ])->throw()->json();
-        Log::info('Product updated: ' . $this->product->toJson(), ['response' => $response->json()]);
+        Log::info('Product updated: ' . $this->product->toJson(), ['response' => $response]);
         
     }
 }

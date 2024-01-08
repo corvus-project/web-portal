@@ -14,7 +14,8 @@ class ProductObserver
      */
     public function created(Product $product): void
     {
-        //
+        SyncPricing::dispatch($product);
+        SyncStock::dispatch($product);
     }
 
     /**
@@ -39,7 +40,7 @@ class ProductObserver
      */
     public function deleted(Product $product): void
     {
-        //
+
     }
 
     /**
