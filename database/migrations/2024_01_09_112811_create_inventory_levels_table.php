@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('inventory_location_id')->constrained();
             $table->foreignId('inventory_level_status_id');
             $table->integer('available')->default(0);
-            $table->unique(['product_id', 'inventory_location_id', 'inventory_level_status_id']);
+            $table->unique(['product_id', 'inventory_location_id', 'inventory_level_status_id'], 'unique_inventory');
             $table->timestamps();
         });
     }

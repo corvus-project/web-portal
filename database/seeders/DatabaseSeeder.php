@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\InventoryLevel;
 use App\Models\InventoryLevelStatus;
 use App\Models\InventoryLocation;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table(app()->make(InventoryLevelStatus::class)->getTable())->truncate();
         DB::table(app()->make(InventoryLevel::class)->getTable())->truncate();
-        DB::table(app()->make(InventoryLocation::class)->getTable())->truncate();
+        DB::table(app()->make(User::class)->getTable())->truncate();
 
         InventoryLocation::create(['name' => 'Default']);
         $inventoryLevelStatus =
@@ -50,7 +51,7 @@ class DatabaseSeeder extends Seeder
             ->create();
         \App\Models\Customer::factory(10)->create();
 
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
