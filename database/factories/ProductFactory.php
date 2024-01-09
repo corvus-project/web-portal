@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\InventoryLevel;
+use App\Models\InventoryLevelStatus;
+use App\Models\InventoryLocation;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
+
     /**
      * Define the model's default state.
      *

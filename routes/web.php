@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\InventoryLevel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */ 
 Route::get('/debug', function () {
-    $url = config('services.servers.stock.url');
-    return $url;
+    $i = InventoryLevel::query()->with('location')->get();
+
+    foreach($i as $r){
+        dd($r->location);
+    }
+    return $i;
 });
 

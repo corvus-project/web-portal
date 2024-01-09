@@ -12,5 +12,9 @@ class Product extends Model
 
     protected $fillable = [ 'name', 'price', 'stock', 'sku', 'barcode', 'description', 'published_at'];
 
+    public function inventoryLevel()
+    {
+        return $this->hasMany(InventoryLevel::class);
+    }
 
 }

@@ -9,13 +9,23 @@ use Illuminate\Support\Facades\Log;
 
 class ProductObserver
 {
+    private function  dispatchSyncPricing(Product $product)
+    {
+        //SyncPricing::dispatch($product);
+    }
+
+    private function  dispatchSyncStock(Product $product)
+    {
+        //SyncStock::dispatch($product);
+    }
+
     /**
      * Handle the Product "created" event.
      */
     public function created(Product $product): void
     {
-        SyncPricing::dispatch($product);
-        SyncStock::dispatch($product);
+        $this->dispatchSyncStock($product);
+        $this->dispatchSyncPricing($product);
     }
 
     /**
@@ -25,14 +35,13 @@ class ProductObserver
     {
         if ($product->isDirty('price')) {
             Log::info('Product price updated: from {from} to {to}', ['from' => $product->getOriginal('price'), 'to' => $product->price]);
-            SyncPricing::dispatch($product);
+            $this->dispatchSyncPricing($product);
         }
 
         if ($product->isDirty('stock')) {
-            SyncStock::dispatch($product);
             Log::info('Product stock updated: from {from} to {to}', ['from' => $product->getOriginal('stock'), 'to' => $product->stock]);
+            $this->dispatchSyncStock($product);
         }
-        //Log::info('Product updated: ' . $product->toJson());
     }
 
     /**
@@ -40,7 +49,6 @@ class ProductObserver
      */
     public function deleted(Product $product): void
     {
-
     }
 
     /**
