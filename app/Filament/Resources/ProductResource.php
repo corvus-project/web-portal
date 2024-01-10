@@ -42,6 +42,9 @@ class ProductResource extends Resource
                     ->required()
                     ->numeric()
                     ->default(0),
+            ])->columns([
+                'sm' => 2,
+                'lg' => null,
             ]);
     }
 
@@ -71,6 +74,9 @@ class ProductResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\Action::make('pricing')
+                    ->url(fn (Product $product): string => static::getUrl('pricing',  ['record' => $product->id]))
+                    ->icon('heroicon-o-book-open'),
 
                 Tables\Actions\Action::make('inventory')
                     ->url(fn (Product $product): string => static::getUrl('inventory',  ['record' => $product->id]))
@@ -99,7 +105,8 @@ class ProductResource extends Resource
             'index' => Pages\ListProducts::route('/'),
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
-            'inventory' => Pages\Inventory::route('/{record}/inventory')
+            'pricing' => Pages\PriceList::route('/{record}/price-list'),
+            'inventory' => Pages\InventoryList::route('/{record}/inventory-list')
         ];
     }
 

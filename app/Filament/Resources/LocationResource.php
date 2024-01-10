@@ -17,11 +17,15 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class LocationResource extends Resource
 {
+    protected static ?string $title = 'Locations';
+ 
+    protected static ?string $navigationLabel = 'Locations';
+
     protected static ?string $model = InventoryLocation::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 30;
 
     public static function form(Form $form): Form
     {

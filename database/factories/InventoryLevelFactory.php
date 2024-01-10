@@ -18,8 +18,8 @@ class InventoryLevelFactory extends Factory
      */
     public function definition(): array
     {
-        $location = InventoryLocation::first();
-        $inventory_level_status = InventoryLevelStatus::first();
+        $location = InventoryLocation::inRandomOrder()->first();
+        $inventory_level_status = InventoryLevelStatus::inRandomOrder()->first();
 
         return [
             'inventory_location_id' => $location->id,

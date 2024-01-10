@@ -9,6 +9,7 @@ class InventoryLevel extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['product_id', 'inventory_location_id', 'inventory_level_status_id', 'available'];
     public function product()
     {
         return $this->belongsTo(Product::class);

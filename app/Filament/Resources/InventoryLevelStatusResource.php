@@ -17,11 +17,12 @@ use Filament\Tables\Columns\TextColumn;
 
 class InventoryLevelStatusResource extends Resource
 {
+    protected static ?string $navigationLabel = 'Inventory Level';
     protected static ?string $model = InventoryLevelStatus::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 40;
     
     public static function form(Form $form): Form
     {

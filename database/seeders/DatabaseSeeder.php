@@ -4,9 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Customer;
 use App\Models\InventoryLevel;
 use App\Models\InventoryLevelStatus;
 use App\Models\InventoryLocation;
+use App\Models\Product;
+use App\Models\ProductPrice;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -23,7 +26,10 @@ class DatabaseSeeder extends Seeder
         DB::table(app()->make(InventoryLevelStatus::class)->getTable())->truncate();
         DB::table(app()->make(InventoryLevel::class)->getTable())->truncate();
         DB::table(app()->make(User::class)->getTable())->truncate();
-
+        DB::table(app()->make(ProductPrice::class)->getTable())->truncate();
+        DB::table(app()->make(Product::class)->getTable())->truncate();
+        DB::table(app()->make(InventoryLocation::class)->getTable())->truncate();
+        DB::table(app()->make(Customer::class)->getTable())->truncate();
         InventoryLocation::create(['name' => 'Default']);
         $inventoryLevelStatus =
             [
@@ -46,10 +52,12 @@ class DatabaseSeeder extends Seeder
 
         InventoryLevelStatus::insert($inventoryLevelStatus);
 
-        \App\Models\Product::factory(100)
-            ->has(InventoryLevel::factory()->count(1))
-            ->create();
-        \App\Models\Customer::factory(10)->create();
+        Customer::factory(10)->create();
+
+        Product::factory(10)
+                ->hasInventoryLevel(rand(0, 4))
+                ->hasProductPrice()
+                ->create();
 
         User::factory()->create([
             'name' => 'Test User',
