@@ -9,9 +9,11 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 
 class ProductResource extends Resource
 {
@@ -52,26 +54,29 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('sku')
-                    ->label('SKU')
-                    ->searchable(),
+                
+                Tables\Columns\TextColumn::make('sku')->searchable(),
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('barcode')->searchable(),
+                Tables\Columns\IconColumn::make('status')
+                    ->label('Status')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('barcode')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('published_at')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('price')
-                    ->money()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('stock')
-                    ->numeric()
-                    ->sortable(),
 
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                SelectFilter::make('status')
+                ->label('Status')
+                ->options([
+                    0 => 'Hidden',
+                    1 => 'Visible',
+                ]),
+
+                DateRangeFilter::make('published_at')->label('Fiter published at'),
             ])
             ->actions([
                 Tables\Actions\Action::make('pricing')

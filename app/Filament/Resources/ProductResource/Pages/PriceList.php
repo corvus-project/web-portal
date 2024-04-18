@@ -52,7 +52,7 @@ class PriceList extends Page  implements HasTable
                 TextColumn::make('customer.name')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('price')
+                TextColumn::make('price')->currency(settings()->get('currency'))
 
             ])
             ->filters([

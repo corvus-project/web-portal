@@ -23,7 +23,7 @@ class LatestProducts extends BaseWidget
                 TextColumn::make('sku'),
                 TextColumn::make('name'),
                 TextColumn::make('ean'),
-                TextColumn::make('stock'),
+                TextColumn::make('stock')->currency(settings()->get('currency')),
                 TextColumn::make('price'),
                 TextColumn::make('created_at')->dateTime(),
             ]);

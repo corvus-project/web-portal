@@ -27,6 +27,7 @@ class ProductFactory extends Factory
             'barcode' => $this->faker->ean13(),
             'price' => $this->faker->randomFloat(2,1,1000),
             'stock' => $this->faker->randomNumber(2),
+            'status' => $this->faker->boolean(),
             'description' => $this->faker->realText(),
             'published_at' => $this->faker->dateTimeBetween('-1 year', '+1 year'),
             'created_at' => $this->faker->dateTimeBetween('-1 year', '-6 month'),

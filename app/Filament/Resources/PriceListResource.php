@@ -61,7 +61,7 @@ class PriceListResource extends Resource
                 ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
-                    ->money(),
+                    ->currency(settings()->get('currency'))
             ])
             ->filters([
                 //

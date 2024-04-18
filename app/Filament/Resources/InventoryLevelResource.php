@@ -60,7 +60,7 @@ class InventoryLevelResource extends Resource
         return $table
             ->query(InventoryLevel::query()->with(['location', 'status', 'product']))
             ->columns([
-                Tables\Columns\TextColumn::make('product.sku')
+                Tables\Columns\TextColumn::make('product.product_definition')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('location.name')
@@ -73,16 +73,26 @@ class InventoryLevelResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('inventory_level_status_id')
+                    ->label('Inventory Level Status')
                     ->relationship(
                         'status',
                         'name'
                     ),
 
                 Tables\Filters\SelectFilter::make('inventory_location_id')
+                    ->label('Location')
                     ->relationship(
                         'location',
                         'name'
                     ),
+                Tables\Filters\SelectFilter::make('product_id')
+                    ->label('Product')
+                    ->searchable()
+                    ->options(
+                        Product::all()->pluck('product_definition', 'id')
+                    )
+
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

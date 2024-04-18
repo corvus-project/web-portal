@@ -9,13 +9,22 @@
 .fi-topbar-item {
     align-items: end;
 }
- 
+
 .fi-logo{
     margin-right: 130px;
+    color: #FAFAFA;
 }
 
 nav {
-    background: #c026d3  !important;
+    background: #ea1c33 url(/images/background.png) no-repeat top !important;
+}
+
+.fi-sidebar-header {
+    background: #f42b3b !important;
+}
+
+.fi-sidebar-nav {
+    background: #FAFAFA !important;
 }
 
 .fi-breadcrumbs {

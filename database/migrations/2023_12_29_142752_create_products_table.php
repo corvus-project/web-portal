@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('sku')->unique()->nullable();
             $table->string('barcode')->unique()->nullable();
             $table->longText('description')->nullable();
+            $table->boolean('status')->default(false);  
             $table->date('published_at')->nullable();       
             $table->double('price')->default(0);
             $table->unsignedInteger('stock')->default(0);
